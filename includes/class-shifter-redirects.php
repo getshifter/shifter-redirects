@@ -172,9 +172,12 @@ class Shifter_Redirects {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_public, 'wp_sls_forms' );
-		$this->loader->add_action( 'admin_init', $plugin_public, 'register_sls_forms_ext_settings' );
-		$this->loader->add_action('wp_head', $plugin_public, 'your_function_name');
+		$this->loader->add_action( 'admin_menu', $plugin_public, 'shifter_redirects_menu' );
+		$this->loader->add_action( 'admin_init', $plugin_public, 'shifter_redirects_settings' );
+		
+		if (get_option('shifter_redirects_status')) {
+			$this->loader->add_action( 'wp_head', $plugin_public, 'shifter_redirects_header' );
+		}
 
 	}
 

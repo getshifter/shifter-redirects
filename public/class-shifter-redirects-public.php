@@ -82,23 +82,6 @@ class Shifter_Redirects_Public {
 	 */
 	public function enqueue_scripts() {
 
-		add_action( 'wp_head', 'your_function_name' );
-		function your_function_name() { ?>
-				<script type='text/javascript'>
-
-				const source = "<?php echo get_option('shifter_redirects_source'); ?>";
-				const destination = "<?php echo get_option('shifter_redirects_destination'); ?>";
-				const host = window.location.origin;
-
-				if (destination && source) {
-					if (host === source) {
-						window.location = destination + window.location.pathname + window.location.search;
-					}
-				}
-				</script>
-			<?php
-		};
-
 		$data = array(
 			'shifter_redirects_source'      => get_option( 'shifter_redirects_source' ),
 			'shifter_redirects_destination' => get_option( 'shifter_redirects_destination' ),
@@ -121,9 +104,10 @@ class Shifter_Redirects_Public {
 
 	}
 
-	public function register_sls_forms_ext_settings() {
-		register_setting( 'wp-sls-forms-settings-group', 'shifter_redirects_source' );
-		register_setting( 'wp-sls-forms-settings-group', 'shifter_redirects_destination' );
+	public function shifter_redirects_settings() {
+		register_setting( 'shifter-redirects-settings-group', 'shifter_redirects_source' );
+		register_setting( 'shifter-redirects-settings-group', 'shifter_redirects_destination' );
+		register_setting( 'shifter-redirects-settings-group', 'shifter_redirects_status' );
 	}
 
 	// Create Options Page
@@ -135,9 +119,17 @@ class Shifter_Redirects_Public {
 	<h2 class="title">Shifter Redirects</h2>
   <p>Domain redirects for static sites.</p>
   <form method="post" action="options.php">
-		<?php settings_fields( 'wp-sls-forms-settings-group' ); ?>
-		<?php do_settings_sections( 'wp-sls-forms-settings-group' ); ?>
+		<?php settings_fields( 'shifter-redirects-settings-group' ); ?>
+		<?php do_settings_sections( 'shifter-redirects-settings-group' ); ?>
 	  <table class="form-table">
+		<tr valign="top">
+		 <th scope="row">
+			 Enabled:
+		 </th>
+		 <td>
+		 <input name="shifter_redirects_status" type="checkbox" value="1" <?php checked( '1', get_option( 'shifter_redirects_status' ) ); ?> />
+		 </td>
+		</tr>
 		<tr valign="top">
 		<th scope="row">Source:</th>
 		<td>
@@ -160,7 +152,7 @@ class Shifter_Redirects_Public {
 		<?php
 	}
 
-	public function wp_sls_forms() {
+	public function shifter_redirects_menu() {
 		add_options_page(
 			'Shifter Redirects',
 			'Shifter Redirects',
@@ -171,5 +163,24 @@ class Shifter_Redirects_Public {
 				'shifter_redirects_admin',
 			)
 		);
+	}
+
+
+	public function shifter_redirects_header() {
+		?>
+				<script type='text/javascript'>
+
+				const source = "<?php echo get_option( 'shifter_redirects_source' ); ?>";
+				const destination = "<?php echo get_option( 'shifter_redirects_destination' ); ?>";
+				const status = "<?php echo get_option( 'shifter_redirects_status' ); ?>";
+				const host = window.location.origin;
+
+				if (destination && source) {
+					if (host === source) {
+						window.location = destination + window.location.pathname + window.location.search;
+					}
+				}
+				</script>
+			<?php
 	}
 }
