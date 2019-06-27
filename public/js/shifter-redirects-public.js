@@ -7,19 +7,16 @@
 	const host = window.location.host;
 
 	
-	if (destination && source) {
-		// if (host !== source) {
-		// 	return;
-		// }
-		// if (host === destination) {
-		// 	return;
-		// }
-		if (host === source) {
-			window.location = destination + window.location.pathname + window.location.search;
-		}
-	}
-
-	console.log(source);
-	console.log(destination);
+	// if (destination && source) {
+	// 	// if (host !== source) {
+	// 	// 	return;
+	// 	// }
+	// 	// if (host === destination) {
+	// 	// 	return;
+	// 	// }
+	// 	if (host === source) {
+	// 		window.location = destination + window.location.pathname + window.location.search;
+	// 	}
+	// }
 
 })( jQuery );

@@ -82,8 +82,25 @@ class Shifter_Redirects_Public {
 	 */
 	public function enqueue_scripts() {
 
+		add_action( 'wp_head', 'your_function_name' );
+		function your_function_name() { ?>
+				<script type='text/javascript'>
+
+				const source = "<?php echo get_option('shifter_redirects_source'); ?>";
+				const destination = "<?php echo get_option('shifter_redirects_destination'); ?>";
+				const host = window.location.origin;
+
+				if (destination && source) {
+					if (host === source) {
+						window.location = destination + window.location.pathname + window.location.search;
+					}
+				}
+				</script>
+			<?php
+		};
+
 		$data = array(
-			'shifter_redirects_source' => get_option( 'shifter_redirects_source' ),
+			'shifter_redirects_source'      => get_option( 'shifter_redirects_source' ),
 			'shifter_redirects_destination' => get_option( 'shifter_redirects_destination' ),
 		);
 
@@ -110,7 +127,8 @@ class Shifter_Redirects_Public {
 	}
 
 	// Create Options Page
-	public function shifter_redirects_admin() { ?>
+	public function shifter_redirects_admin() {
+		?>
 	<div class="wrap">
 <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 <div class="card">
