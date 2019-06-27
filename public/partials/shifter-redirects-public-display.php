@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a public-facing view for the plugin
  *
@@ -11,6 +10,7 @@
  * @package    Shifter_Redirects
  * @subpackage Shifter_Redirects/public/partials
  */
+
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->

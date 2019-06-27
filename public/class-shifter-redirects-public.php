@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -104,13 +103,22 @@ class Shifter_Redirects_Public {
 
 	}
 
+	/**
+	 * Register plugin settings
+	 *
+	 * @since    1.0.0
+	 */
 	public function shifter_redirects_settings() {
 		register_setting( 'shifter-redirects-settings-group', 'shifter_redirects_source' );
 		register_setting( 'shifter-redirects-settings-group', 'shifter_redirects_destination' );
 		register_setting( 'shifter-redirects-settings-group', 'shifter_redirects_status' );
 	}
 
-	// Create Options Page
+	/**
+	 * Create the options page
+	 *
+	 * @since    1.0.0
+	 */
 	public function shifter_redirects_admin() {
 		?>
 	<div class="wrap">
@@ -152,6 +160,11 @@ class Shifter_Redirects_Public {
 		<?php
 	}
 
+	/**
+	 * Create the admin menu
+	 *
+	 * @since    1.0.0
+	 */
 	public function shifter_redirects_menu() {
 		add_options_page(
 			'Shifter Redirects',
@@ -165,14 +178,18 @@ class Shifter_Redirects_Public {
 		);
 	}
 
-
+		/**
+		 * Add Shifter Redirects JS functions to the header
+		 *
+		 * @since    1.0.0
+		 * @access   private
+		 */
 	public function shifter_redirects_header() {
 		?>
 				<script type='text/javascript'>
-
-				const source = "<?php echo get_option( 'shifter_redirects_source' ); ?>";
-				const destination = "<?php echo get_option( 'shifter_redirects_destination' ); ?>";
-				const status = "<?php echo get_option( 'shifter_redirects_status' ); ?>";
+				const source = "<?php echo __( get_option( 'shifter_redirects_source' ) ); ?>";
+				const destination = "<?php echo __( get_option( 'shifter_redirects_destination' ) ); ?>";
+				const status = "<?php echo __( get_option( 'shifter_redirects_status' ) ); ?>";
 				const host = window.location.origin;
 
 				if (destination && source) {
