@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Shifter Redirects
  * Plugin URI:        https://www.getshifter.io
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       A redirects plugin for static WordPress sites.
  * Version:           1.0.0
  * Author:            DigitalCube
  * Author URI:        https://en.digitalcube.jp
