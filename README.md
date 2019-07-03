@@ -2,6 +2,15 @@
 
 A redirects plugin for static WordPress sites.
 
+## How-to use Shifter Redirects
+
+1. Start by downloading and installing this plugin.
+2. Navigate to the settings page. `WordPress Dashboard / Settings / Shifter Redirects`
+3. Add your Source and Destination
+4. Check enabled
+
+
+
 ## FAQs
 
 ### Why do I need another redirect plugin?
