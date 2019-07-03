@@ -23,7 +23,7 @@ Accessing the web address `https://www.example.com`, users will be redirected to
 
 ### Why do I need another redirect plugin?
 
-Most (all) current redirect plugins for WordPress use a server like NGINX or Apache. For static sites you'll need a different solution. This plugin is designed to work with the popular Redirections plugin or as a standalone for some features.
+You don't, with a few exceptions. Most (maybe all) current redirect plugins for WordPress use PHP and a server like NGINX or Apache to handle redirects. For static sites you'll need a different solution. This plugin is designed to work with the popular Redirections plugin or as a standalone for some features.
 
 ### What does it do?
 
