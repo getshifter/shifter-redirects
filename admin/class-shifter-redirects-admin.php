@@ -60,18 +60,6 @@ class Shifter_Redirects_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Shifter_Redirects_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Shifter_Redirects_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/shifter-redirects-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -82,18 +70,6 @@ class Shifter_Redirects_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Shifter_Redirects_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Shifter_Redirects_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/shifter-redirects-admin.js', array( 'jquery' ), $this->version, false );
 
@@ -135,6 +111,46 @@ class Shifter_Redirects_Admin {
 				'shifter_redirects_admin',
 			)
 		);
+	}
+
+	/**
+	 * Get the redirects
+	 *
+	 * @since    1.1.0
+	 */
+	public function get_redirects() {
+		$request  = new WP_REST_Request( 'GET', '/redirection/v1' );
+		$response = rest_do_request( $request );
+
+		if ( $response->is_error() ) {
+			$message    = $response->get_error_message();
+			$error_data = $response->get_error_data();
+			wp_die( esc_html( printf( '<p>An error occurred: %s (%d)</p>', $message, $error_data ) ) );
+		}
+
+			$data = $response->get_data();
+			return $data;
+	}
+
+	/**
+	 * Save redirects to file
+	 *
+	 * @since    1.1.0
+	 */
+	public function save_redirects() {
+
+		$upload_dir = wp_get_upload_dir();
+		$file       = $upload_dir['basedir'] . '/shifter-redirects.json';
+		$dirname    = dirname( $save_path );
+		$data       = self::get_redirects();
+		$data_json  = wp_json_encode( $data );
+
+		if ( ! is_dir( $dirname ) ) {
+			mkdir( $dirname, 0755, true );
+		}
+
+		file_put_contents( $file, $data_json );
+
 	}
 
 }
