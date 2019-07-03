@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -87,7 +86,7 @@ class Shifter_Redirects {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Shifter_Redirects_Loader. Orchestrates the hooks of the plugin.
-	 * - Shifter_Redirects_i18n. Defines internationalization functionality.
+	 * - Shifter_Redirects_I18n. Defines internationalization functionality.
 	 * - Shifter_Redirects_Admin. Defines all hooks for the admin area.
 	 * - Shifter_Redirects_Public. Defines all hooks for the public side of the site.
 	 *
@@ -129,7 +128,7 @@ class Shifter_Redirects {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Shifter_Redirects_i18n class in order to set the domain and to register the hook
+	 * Uses the Shifter_Redirects_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +136,7 @@ class Shifter_Redirects {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Shifter_Redirects_i18n();
+		$plugin_i18n = new Shifter_Redirects_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -156,6 +155,8 @@ class Shifter_Redirects {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'shifter_redirects_menu' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'shifter_redirects_settings' );
 
 	}
 
@@ -172,8 +173,6 @@ class Shifter_Redirects {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_public, 'shifter_redirects_menu' );
-		$this->loader->add_action( 'admin_init', $plugin_public, 'shifter_redirects_settings' );
 
 		if ( get_option( 'shifter_redirects_status' ) ) {
 			$this->loader->add_action( 'wp_head', $plugin_public, 'shifter_redirects_header' );

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +23,7 @@
  * @subpackage Shifter_Redirects/includes
  * @author     DigitalCube <hello@getshifter.io>
  */
-class Shifter_Redirects_i18n {
+class Shifter_Redirects_I18n {
 
 
 	/**

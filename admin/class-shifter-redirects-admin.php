@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -98,6 +97,44 @@ class Shifter_Redirects_Admin {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/shifter-redirects-admin.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+		/**
+		 * Create the options page
+		 *
+		 * @since    1.0.0
+		 */
+	public function shifter_redirects_admin() {
+		include 'partials/shifter-redirects-admin-display.php';
+	}
+
+	/**
+	 * Register plugin settings
+	 *
+	 * @since    1.0.0
+	 */
+	public function shifter_redirects_settings() {
+		register_setting( 'shifter-redirects-settings-group', 'shifter_redirects_source' );
+		register_setting( 'shifter-redirects-settings-group', 'shifter_redirects_destination' );
+		register_setting( 'shifter-redirects-settings-group', 'shifter_redirects_status' );
+	}
+
+	/**
+	 * Create the admin menu
+	 *
+	 * @since    1.0.0
+	 */
+	public function shifter_redirects_menu() {
+		add_options_page(
+			'Shifter Redirects',
+			'Shifter Redirects',
+			'manage_options',
+			'shifter-redirects',
+			array(
+				$this,
+				'shifter_redirects_admin',
+			)
+		);
 	}
 
 }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -22,6 +21,8 @@
  */
 class Shifter_Redirects_Activator {
 
+
+
 	/**
 	 * Short Description. (use period)
 	 *
@@ -29,8 +30,5 @@ class Shifter_Redirects_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
-
-	}
-
+	public static function activate() {      }
 }
