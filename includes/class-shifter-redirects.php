@@ -157,7 +157,10 @@ class Shifter_Redirects {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'shifter_redirects_menu' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'shifter_redirects_settings' );
-		$this->loader->add_action( 'init', $plugin_admin, 'save_redirects' );
+
+		if ( class_exists( 'Redirection_Api' ) ) {
+			$this->loader->add_action( 'init', $plugin_admin, 'save_redirects' );
+		}
 
 	}
 
