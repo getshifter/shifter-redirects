@@ -31,6 +31,10 @@ You don't, with a few exceptions. Most (maybe all) current redirect plugins for 
 
 It is designed as a helper plugin to work alongside Redirections. Support for regex/wildcard redirects is coming soon. For now, it supports TLD redirects such as www to non-www and vice versa.
 
+### What is a TLD redirect?
+
+TLD standard for Top Level Domain. That's the web address of your site without any sub pages. For example, `www.example.com`. TLD redirects are ones that replace the domain with a new one. They are also known as a root or domain redirect.
+
 ### But my DNS provider offers TLD redirects, do I need this?
 
 Maybe? We built this two reaons. First, users with DNS providers who don't offer domain redirects and second, users who need support for regex/wildcard redirects.
