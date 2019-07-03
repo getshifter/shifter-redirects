@@ -9,7 +9,15 @@ A redirects plugin for static WordPress sites.
 3. Add your Source and Destination
 4. Check enabled
 
+- Source: What URL to redirect from.
+- Destination: What URL to redirect to.
 
+## Example
+
+- Source: `https://www.example.com`
+- Destination: `https://example.com`
+
+Accessing the web address `https://www.example.com`, users will be redirected to `https://example.com` with subpages if any, and URL query params.
 
 ## FAQs
 
