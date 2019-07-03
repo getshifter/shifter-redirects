@@ -19,6 +19,8 @@ A redirects plugin for static WordPress sites.
 
 Accessing the web address `https://www.example.com`, users will be redirected to `https://example.com` with subpages if any, and URL query params.
 
+![Shifter Redirects Settings](assets/screenshot-1.png)
+
 ## FAQs
 
 ### Why do I need another redirect plugin?
